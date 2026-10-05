@@ -1,0 +1,2592 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎭 Profesyonel & Yetişkin Çift Rol Yapma Dünyası | 14 Adımlı Tutku</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-dark: #070510;
+      --surface: #120d22;
+      --surface-card: #1b1330;
+      --surface-hover: #261b44;
+      --accent-pink: #ff3b7e;
+      --accent-purple: #9b51e0;
+      --accent-blue: #00c2ff;
+      --accent-gold: #ffbe3b;
+      --female-color: #ff4081;
+      --male-color: #00d2ff;
+      --text-main: #f8f5ff;
+      --text-muted: #a395c2;
+      --border-glow: rgba(255, 59, 126, 0.25);
+      --card-radius: 20px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        radial-gradient(circle at 15% 15%, rgba(255, 59, 126, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(155, 81, 224, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(0, 194, 255, 0.06) 0%, transparent 60%);
+    }
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      animation: floatUp linear infinite;
+      opacity: 0;
+      user-select: none;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(105vh) scale(0.6) rotate(0deg); opacity: 0; }
+      15% { opacity: 0.35; }
+      85% { opacity: 0.25; }
+      100% { transform: translateY(-10vh) scale(1.1) rotate(360deg); opacity: 0; }
+    }
+
+    .app-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1060px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 20px 16px 60px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Top Bar Controls */
+    .top-controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .top-quick-btns {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .icon-ctrl-btn {
+      background: var(--surface-card);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+    .icon-ctrl-btn:hover {
+      border-color: var(--accent-pink);
+      background: var(--surface-hover);
+      transform: translateY(-1px);
+    }
+    .icon-ctrl-btn.active-glow {
+      border-color: var(--accent-gold);
+      background: rgba(255, 190, 59, 0.15);
+      color: #ffd700;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 59, 126, 0.15);
+      border: 1px solid rgba(255, 59, 126, 0.4);
+      padding: 5px 18px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-pink);
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff 10%, #ff85b8 50%, var(--accent-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 300;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border-glow);
+      border-radius: var(--card-radius);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(12px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      border: none;
+      color: white;
+      padding: 12px 26px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 0.92rem;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(255, 59, 126, 0.35);
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(255, 59, 126, 0.5); }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #ffd700, #ff8c00);
+      border: none;
+      color: #150921;
+      padding: 12px 26px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 0.92rem;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(255, 215, 0, 0.4);
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6); }
+
+    .back-btn {
+      background: var(--surface-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      padding: 7px 14px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .back-btn:hover { color: white; border-color: var(--accent-pink); }
+
+    /* Setup View */
+    .players-config {
+      padding: 18px 22px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .player-card {
+      background: var(--surface-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .player-card.female { border-left: 4px solid var(--female-color); }
+    .player-card.male { border-left: 4px solid var(--male-color); }
+    .player-avatar { font-size: 2rem; }
+    .player-inputs { flex: 1; }
+    .player-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+    .player-input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      width: 100%;
+      outline: none;
+      padding: 2px 0;
+    }
+    .starter-selector { text-align: center; }
+    .starter-label { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 5px; }
+    .starter-toggle {
+      display: flex;
+      background: var(--surface-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      padding: 3px;
+    }
+    .starter-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .starter-btn.active {
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      color: white;
+      box-shadow: 0 2px 10px rgba(255, 59, 126, 0.4);
+    }
+
+    .scenario-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .scenario-title-area h2 { font-size: 1.35rem; font-weight: 800; }
+    .scenario-title-area p { font-size: 0.82rem; color: var(--text-muted); }
+
+    .scenario-filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .filter-pill {
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-pill:hover, .filter-pill.active {
+      background: var(--surface-card);
+      border-color: var(--accent-pink);
+      color: white;
+      box-shadow: 0 2px 12px rgba(255, 59, 126, 0.3);
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 16px;
+    }
+    .scenario-card {
+      background: var(--surface-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 18px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .scenario-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-pink);
+      box-shadow: 0 10px 30px rgba(255, 59, 126, 0.25);
+    }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+    .card-icon { font-size: 2.2rem; }
+    .card-badge {
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-office { background: rgba(0, 194, 255, 0.15); color: #00c2ff; border: 1px solid rgba(0, 194, 255, 0.4); }
+    .badge-luxury { background: rgba(255, 190, 59, 0.15); color: #ffbe3b; border: 1px solid rgba(255, 190, 59, 0.4); }
+    .badge-fantasy { background: rgba(255, 59, 126, 0.15); color: #ff3b7e; border: 1px solid rgba(255, 59, 126, 0.4); }
+    .badge-sensual { background: rgba(155, 81, 224, 0.15); color: #c084fc; border: 1px solid rgba(155, 81, 224, 0.4); }
+    .badge-romantic { background: rgba(0, 230, 118, 0.15); color: #00e676; border: 1px solid rgba(0, 230, 118, 0.4); }
+
+    .card-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 4px; color: #fff; }
+    .card-atmosphere { font-size: 0.75rem; color: #ffd700; margin-bottom: 8px; font-weight: 600; }
+    .card-roles-preview {
+      font-size: 0.72rem;
+      color: #c4b5fd;
+      background: rgba(155, 81, 224, 0.12);
+      padding: 4px 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+    .card-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.45; margin-bottom: 14px; }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 10px;
+    }
+
+    /* Active Roleplay Gameplay View */
+    .roleplay-active-game {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .game-hud {
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .hud-title-wrap h3 { font-size: 1.15rem; font-weight: 800; }
+    .hud-route-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255, 190, 59, 0.15);
+      border: 1px solid rgba(255, 190, 59, 0.4);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #ffd700;
+      margin-top: 4px;
+    }
+
+    .vibe-meter-wrap { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .meter-stat-pill {
+      background: var(--surface-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .stat-pill-hot { border-color: rgba(255, 59, 126, 0.4); color: var(--accent-pink); }
+    .stat-pill-sweet { border-color: rgba(0, 230, 118, 0.4); color: #00e676; }
+    .stat-pill-funny { border-color: rgba(255, 190, 59, 0.4); color: #ffbe3b; }
+
+    /* Step Track */
+    .step-track-panel {
+      padding: 12px 18px;
+      overflow-x: auto;
+    }
+    .step-track {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 620px;
+      position: relative;
+    }
+    .step-track::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      right: 10px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 0;
+      transform: translateY(-50%);
+    }
+    .step-node {
+      position: relative;
+      z-index: 1;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--surface-card);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      transition: all 0.3s;
+    }
+    .step-node.active {
+      transform: scale(1.2);
+      border-color: var(--accent-gold);
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      color: white;
+      box-shadow: 0 0 15px rgba(255, 59, 126, 0.6);
+    }
+    .step-node.completed {
+      background: var(--accent-pink);
+      border-color: var(--accent-pink);
+      color: white;
+    }
+    .step-node.female-node { border-top-color: var(--female-color); }
+    .step-node.male-node { border-top-color: var(--male-color); }
+
+    /* Story Feed */
+    .story-feed {
+      min-height: 280px;
+      max-height: 460px;
+      overflow-y: auto;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      scroll-behavior: smooth;
+    }
+    .story-feed::-webkit-scrollbar { width: 6px; }
+    .story-feed::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 10px; }
+
+    .scene-intro-box {
+      background: linear-gradient(135deg, rgba(155, 81, 224, 0.15), rgba(255, 59, 126, 0.12));
+      border: 1px dashed rgba(255, 59, 126, 0.4);
+      border-radius: 16px;
+      padding: 14px 18px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.88rem;
+      color: #e5d8ff;
+      line-height: 1.5;
+    }
+
+    .dialogue-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      animation: msgPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .female-row { align-self: flex-start; max-width: 86%; }
+    .male-row { align-self: flex-end; flex-direction: row-reverse; max-width: 86%; }
+
+    @keyframes msgPop {
+      0% { opacity: 0; transform: translateY(12px) scale(0.97); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .dialogue-avatar {
+      font-size: 1.8rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--surface-card);
+      border: 2px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .female-row .dialogue-avatar { border-color: var(--female-color); }
+    .male-row .dialogue-avatar { border-color: var(--male-color); }
+
+    .dialogue-bubble {
+      background: var(--surface-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 12px 16px;
+      position: relative;
+    }
+    .female-row .dialogue-bubble {
+      border-top-left-radius: 4px;
+      border-left: 3px solid var(--female-color);
+      background: linear-gradient(135deg, rgba(255, 64, 129, 0.08), var(--surface-card));
+    }
+    .male-row .dialogue-bubble {
+      border-top-right-radius: 4px;
+      border-right: 3px solid var(--male-color);
+      background: linear-gradient(135deg, rgba(0, 210, 255, 0.08), var(--surface-card));
+    }
+    .bubble-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+      gap: 8px;
+    }
+    .bubble-author { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; }
+    .female-row .bubble-author { color: var(--female-color); }
+    .male-row .bubble-author { color: var(--male-color); }
+    .bubble-vibe-tag {
+      font-size: 0.65rem;
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+    .bubble-text { font-size: 0.95rem; line-height: 1.55; color: var(--text-main); }
+    .bubble-action-hint {
+      font-size: 0.75rem;
+      color: #ffd700;
+      font-style: italic;
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .bubble-meta {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-top: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .bubble-tts-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: color 0.2s;
+    }
+    .bubble-tts-btn:hover { color: var(--accent-pink); }
+
+    .typing-bubble {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      padding: 10px 16px;
+      background: var(--surface-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      width: fit-content;
+    }
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent-pink);
+      border-radius: 50%;
+      animation: typingBlink 1.3s infinite ease-in-out;
+    }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; background: var(--accent-purple); }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; background: var(--accent-blue); }
+    @keyframes typingBlink {
+      0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .event-beat-box {
+      background: linear-gradient(135deg, rgba(255, 59, 126, 0.12), rgba(155, 81, 224, 0.18));
+      border: 1px solid rgba(255, 59, 126, 0.35);
+      border-left: 4px solid var(--accent-gold);
+      border-radius: 14px;
+      padding: 10px 16px;
+      margin: 4px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #ffd790;
+      animation: msgPop 0.4s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    }
+    .event-beat-box .beat-icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 1px; }
+    .event-beat-box .beat-content strong { color: #fff; font-weight: 800; }
+    .event-beat-box .beat-content span { color: #f1ddff; }
+
+    .turn-callout {
+      background: var(--surface-card);
+      border: 2px solid var(--accent-pink);
+      border-radius: 14px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 0 20px rgba(255, 59, 126, 0.25);
+    }
+    .turn-callout-info { display: flex; align-items: center; gap: 10px; }
+    .turn-callout-icon { font-size: 1.6rem; }
+    .turn-callout-text h4 { font-size: 1rem; font-weight: 800; }
+    .turn-callout-text p { font-size: 0.78rem; color: var(--text-muted); }
+    .turn-actions-right { display: flex; align-items: center; gap: 8px; }
+    .turn-pill {
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 5px 14px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      color: white;
+    }
+    .undo-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-muted);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .undo-btn:hover { color: #fff; border-color: var(--accent-gold); }
+
+    .choice-area { display: flex; flex-direction: column; gap: 10px; }
+    .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .choice-card {
+      background: var(--surface-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 14px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      transition: all 0.25s;
+      text-align: left;
+    }
+    .choice-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-pink);
+      background: var(--surface-hover);
+      box-shadow: 0 6px 18px rgba(255, 59, 126, 0.25);
+    }
+    .choice-tag { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; }
+    .tag-sweet { color: #00e676; }
+    .tag-funny { color: #ffbe3b; }
+    .tag-flirt { color: #00c2ff; }
+    .tag-hot { color: #ff3b7e; }
+    .tag-deep { color: #d946ef; }
+    .choice-text { font-size: 0.92rem; line-height: 1.45; color: var(--text-main); font-weight: 500; }
+    .choice-action-hint { font-size: 0.72rem; color: #ffbe3b; font-style: italic; }
+
+    .choice-event-preview {
+      font-size: 0.72rem;
+      color: #00e676;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(0, 230, 118, 0.08);
+      padding: 4px 8px;
+      border-radius: 8px;
+      border: 1px dashed rgba(0, 230, 118, 0.25);
+    }
+
+    .custom-input-box {
+      display: flex;
+      gap: 8px;
+      background: var(--surface-card);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 5px 5px 5px 14px;
+    }
+    .custom-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+    .custom-send-btn {
+      background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+      border: none;
+      color: white;
+      padding: 9px 18px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .custom-send-btn:hover {
+      box-shadow: 0 4px 15px rgba(255, 59, 126, 0.5);
+    }
+
+    /* Finale View */
+    .finale-panel {
+      display: none;
+      text-align: center;
+      padding: 36px 20px;
+    }
+    .finale-icon { font-size: 3.5rem; margin-bottom: 10px; }
+    .finale-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; color: var(--accent-gold); margin-bottom: 8px; }
+    .finale-subtitle { font-size: 0.95rem; color: #f0e0ff; max-width: 620px; margin: 0 auto 20px; line-height: 1.55; }
+    .stats-row { display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+    .stat-box { background: var(--surface-card); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 12px 20px; min-width: 120px; }
+    .stat-val { font-size: 1.8rem; font-weight: 900; color: var(--accent-pink); }
+    .stat-lbl { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
+    .highlight-quote-box {
+      background: rgba(255, 59, 126, 0.1);
+      border: 1px dashed rgba(255, 59, 126, 0.35);
+      border-radius: 14px;
+      padding: 14px 20px;
+      max-width: 600px;
+      margin: 0 auto 24px;
+      font-size: 0.88rem;
+      color: #ffd700;
+      font-style: italic;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: linear-gradient(135deg, #180c26, #2a1138);
+      border: 1px solid var(--accent-pink);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    #confettiCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 999; }
+
+    @media (max-width: 768px) {
+      .players-config { grid-template-columns: 1fr; gap: 10px; }
+      .choice-grid { grid-template-columns: 1fr; }
+      .scenario-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="confettiCanvas"></canvas>
+<div class="ambient-bg"></div>
+<div class="particles" id="particleContainer"></div>
+
+<div class="app-container">
+  <!-- Top Bar Controls -->
+  <div class="top-controls-bar">
+    <div class="brand-badge" style="margin-bottom:0;">✨ +18 YETİŞKİN & FLÖRT DÜNYASI</div>
+    <div class="top-quick-btns">
+      <button class="icon-ctrl-btn" id="ttsToggleBtn" onclick="toggleTTS()" title="Cevapları Sesli Oku">
+        <span id="ttsIcon">🗣️</span> <span id="ttsText">Sesli Okuma: Kapalı</span>
+      </button>
+      <button class="icon-ctrl-btn" id="soundToggleBtn" onclick="toggleSound()" title="Ses Efektleri">
+        <span id="soundIcon">🔊</span> <span id="soundText">Ses Açık</span>
+      </button>
+      <button class="icon-ctrl-btn" onclick="saveCurrentGame()" title="Oyunu Kaydet">
+        <span>💾</span> Kaydet
+      </button>
+      <button class="icon-ctrl-btn" id="loadGameBtn" onclick="loadSavedGame()" title="Kayıtlı Oyunu Yükle" style="display:none;">
+        <span>📂</span> Kaydı Yükle
+      </button>
+    </div>
+  </div>
+
+  <header>
+    <h1>Tutku & Flört Hikayeleri</h1>
+    <p class="subtitle">Her cevabın karşı tarafın seçeneklerini doğrudan şekillendirdiği, 14 adımlı dinamik ve gerçekçi yetişkin senaryoları</p>
+  </header>
+
+  <!-- Setup View -->
+  <div id="rpSetupView">
+    <div class="panel players-config">
+      <div class="player-card female">
+        <div class="player-avatar">👩</div>
+        <div class="player-inputs">
+          <div class="player-label">Kadın Oyuncu İsmi</div>
+          <input type="text" id="femaleName" class="player-input" value="Buket" placeholder="Kadın İsmi" />
+        </div>
+      </div>
+
+      <div class="starter-selector">
+        <div class="starter-label">⚡ İlk Kim Başlasın?</div>
+        <div class="starter-toggle">
+          <button class="starter-btn active" id="startFemaleBtn" onclick="setStarter('female')">👩 Kadın</button>
+          <button class="starter-btn" id="startMaleBtn" onclick="setStarter('male')">🧑 Erkek</button>
+        </div>
+      </div>
+
+      <div class="player-card male">
+        <div class="player-avatar">🧑</div>
+        <div class="player-inputs">
+          <div class="player-label">Erkek Oyuncu İsmi</div>
+          <input type="text" id="maleName" class="player-input" value="Sabri" placeholder="Erkek İsmi" />
+        </div>
+      </div>
+    </div>
+
+    <div class="scenario-header">
+      <div class="scenario-title-area">
+        <h2>🎭 12 Özgün Yetişkin Senaryosu</h2>
+        <p>Kategori seçin ve partnerinizle baş başa bu unutulmaz diyalog yolculuğuna başlayın.</p>
+      </div>
+      <button class="btn-primary" onclick="startRandomScenario()">
+        <span>🎲</span> Rastgele Senaryo Başlat
+      </button>
+    </div>
+
+    <!-- Kategori Filtreleri -->
+    <div class="scenario-filter-bar" id="scenarioFilterBar">
+      <button class="filter-pill active" onclick="filterScenarios('all', this)">🌟 Tüm Senaryolar</button>
+      <button class="filter-pill" onclick="filterScenarios('office', this)">💼 Ofis & Güç Oyunu</button>
+      <button class="filter-pill" onclick="filterScenarios('luxury', this)">🏨 Lüks & Kaçamak</button>
+      <button class="filter-pill" onclick="filterScenarios('sensual', this)">💆 Masaj & Tensel</button>
+      <button class="filter-pill" onclick="filterScenarios('fantasy', this)">🏥 Fantezi & Bakım</button>
+      <button class="filter-pill" onclick="filterScenarios('romantic', this)">🍷 Romantik Gece</button>
+    </div>
+
+    <div class="scenario-grid" id="scenarioGrid"></div>
+  </div>
+
+  <!-- Active Gameplay View -->
+  <div id="rpGameView" class="roleplay-active-game">
+    <div class="panel game-hud">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <button class="back-btn" onclick="exitToRpSetup()">
+          <span>←</span> Senaryo Değiştir
+        </button>
+        <div class="hud-title-wrap">
+          <h3 id="hudScenarioTitle">Yönetici & Danışman: Gece Mesaisi</h3>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:2px;">
+            <p id="hudScenarioStage" style="font-size:0.75rem;color:var(--text-muted);">Aşama 1: Açılış & Atmosfer</p>
+            <span class="hud-route-badge" id="hudActiveRoute">📍 Rota: Başlangıç Hamlesi</span>
+          </div>
+        </div>
+      </div>
+      <div class="vibe-meter-wrap">
+        <div class="meter-stat-pill stat-pill-hot" title="Tutku Seviyesi">
+          <span>🔥</span> <span id="vibeStatHot">%35 Tutku</span>
+        </div>
+        <div class="meter-stat-pill stat-pill-sweet" title="Romantizm Seviyesi">
+          <span>💖</span> <span id="vibeStatRomantic">%40 Romantizm</span>
+        </div>
+        <div class="meter-stat-pill stat-pill-funny" title="Flört Zekası">
+          <span>⚡</span> <span id="vibeStatFunny">%25 Zeka</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel step-track-panel">
+      <div class="step-track" id="stepTrack"></div>
+    </div>
+
+    <div class="panel story-feed" id="storyFeed"></div>
+
+    <!-- Typing Indicator -->
+    <div class="typing-bubble" id="typingIndicator">
+      <span style="font-size:0.75rem;color:var(--text-muted);font-weight:700;" id="typingText">Partnerin düşünüyor...</span>
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+    </div>
+
+    <div class="turn-callout" id="turnCallout">
+      <div class="turn-callout-info">
+        <span class="turn-callout-icon" id="turnCalloutIcon">👩</span>
+        <div class="turn-callout-text">
+          <h4 id="turnCalloutName">Buket'in Sırası</h4>
+          <p id="turnCalloutHint">Önceki cevaba en uygun tavrını seç (+18 Tutkulu, Romantik, Zeki, Dominant):</p>
+        </div>
+      </div>
+      <div class="turn-actions-right">
+        <button class="undo-btn" onclick="undoLastTurn()" title="Önceki adımı geri al" id="undoBtn">↩️ Geri Al</button>
+        <div class="turn-pill" id="turnPill">Adım 1 / 14</div>
+      </div>
+    </div>
+
+    <div class="choice-area">
+      <div class="choice-grid" id="choiceGrid"></div>
+      <div class="custom-input-box">
+        <input type="text" id="customInput" class="custom-input" placeholder="✨ Ya da bu ana özel tamamen kendi cümleni yaz ve gönder..." onkeypress="handleCustomKey(event)" />
+        <button class="custom-send-btn" onclick="submitCustomChoice()">Gönder ✨</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Finale View -->
+  <div id="rpFinaleView" class="panel finale-panel">
+    <div class="finale-icon" id="finaleIcon">🔥💋</div>
+    <h2 class="finale-title" id="finaleTitle">Tutku Dolu Gece Tamamlandı!</h2>
+    <p class="finale-subtitle" id="finaleSummary">
+      14 karşılıklı adım tamamlandı. Birbirinize verdiğiniz cevaplar doğrultusunda harika bir hikaye gelişti!
+    </p>
+
+    <div class="highlight-quote-box" id="highlightQuoteBox">
+      "Gecenin Unutulmaz Cümlesi"
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-val">14/14</div>
+        <div class="stat-lbl">Toplam Replik</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="finalVibeScore">Ateşli & Tutkulu</div>
+        <div class="stat-lbl">Çift Dinamiği</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="finalChemistryRate">%98</div>
+        <div class="stat-lbl">Kimya Uyumu</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+      <button class="btn-gold" onclick="restartSameScenario()">🔄 Tekrar Oyna</button>
+      <button class="btn-primary" onclick="exitToRpSetup()">🎭 Yeni Senaryo Seç</button>
+      <button class="back-btn" onclick="copyTranscript()">📋 Panoya Kopyala</button>
+      <button class="back-btn" onclick="downloadTranscriptFile()">💾 TXT Olarak İndir</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Bildirim mesajı</div>
+
+<script>
+let audioCtx = null;
+let soundEnabled = true;
+let ttsEnabled = false;
+
+function initAudio() {
+  if (!audioCtx) {
+    try {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    } catch(e) {}
+  }
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  document.getElementById('soundIcon').textContent = soundEnabled ? '🔊' : '🔇';
+  document.getElementById('soundText').textContent = soundEnabled ? 'Ses Açık' : 'Ses Kapalı';
+  showToast(soundEnabled ? '🔊 Ses efektleri açıldı' : '🔇 Ses efektleri kapatıldı');
+}
+
+function toggleTTS() {
+  ttsEnabled = !ttsEnabled;
+  const btn = document.getElementById('ttsToggleBtn');
+  btn.classList.toggle('active-glow', ttsEnabled);
+  document.getElementById('ttsIcon').textContent = ttsEnabled ? '🗣️' : '🤫';
+  document.getElementById('ttsText').textContent = ttsEnabled ? 'Sesli Okuma: Açık' : 'Sesli Okuma: Kapalı';
+  showToast(ttsEnabled ? '🗣️ Sesli okuma modu açıldı' : '🤫 Sesli okuma kapatıldı');
+}
+
+function speakText(text) {
+  if (!('speechSynthesis' in window)) return;
+  try {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'tr-TR';
+    utterance.rate = 0.95;
+    utterance.pitch = 1.0;
+    
+    // Find Turkish voice if available
+    const voices = window.speechSynthesis.getVoices();
+    const trVoice = voices.find(v => v.lang.includes('tr') || v.lang.includes('TR'));
+    if (trVoice) utterance.voice = trVoice;
+    
+    window.speechSynthesis.speak(utterance);
+  } catch(e) {}
+}
+
+function playTone(freq, type = 'sine', duration = 0.2, gainVal = 0.12) {
+  if (!soundEnabled) return;
+  try {
+    initAudio();
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  } catch(e) {}
+}
+
+function playClickSound() { playTone(540, 'sine', 0.15, 0.1); }
+function playClimaxSound() {
+  if (!soundEnabled) return;
+  [440, 554.37, 659.25, 880].forEach((f, i) => {
+    setTimeout(() => playTone(f, 'triangle', 0.45, 0.18), i * 130);
+  });
+}
+
+let currentCategoryFilter = 'all';
+
+const SCENARIOS = [
+  {
+    id: 'executive-overtime',
+    category: 'office',
+    icon: '💼',
+    badge: 'badge-office',
+    badgeText: '💼 OFİS & GÜÇ OYUNU',
+    title: 'Gece Mesaisi: CEO & Baş Danışman',
+    desc: 'Plazada gece mesaisi. Kapanan panjurlar, masadaki viski kadehi ve profesyonel sınırların yerini alan tensel çekim.',
+    atmosphere: 'Plaza 42. Kat · Gece 23:45 · Kısık Şehir Işıkları & Viski',
+    roles: { female: 'Baş Danışman', male: 'Şirket Yöneticisi / CEO' },
+    intro: 'Saat gece yarısına yaklaşıyor. Plazada herkes çıktı, sadece ikiniz kaldınız. Masadaki raporlar kenara itilirken aranızdaki gizli elektrik artık saklanamaz bir boyuta ulaşıyor.',
+    props: { surface: 'masaya', actionUndress: 'kravatını ve ceketini gevşetip yaklaşırsın', kissArea: 'boynundan dudağına' }
+  },
+  {
+    id: 'penthouse-suite',
+    category: 'luxury',
+    icon: '🏨',
+    badge: 'badge-luxury',
+    badgeText: '🔥 LÜKS SUİT & JAKUZİ',
+    title: 'Penthouse Suit & Şehir Kaçamağı',
+    desc: 'Panoramik manzaralı lüks suit. Şampanya, jakuzi buharı, ipek bornozlar ve yatak odasında zirveye tırmanan tutku.',
+    atmosphere: 'Panoramik Şehir Manzarası · Şampanya & İpek Bornozlar',
+    roles: { female: 'Büyüleyici Misafir', male: 'Suit Sahibi' },
+    intro: 'Penthouse suitte tüm şehir ayaklarınızın altında. Şampanya kadehleri tokuşurken loş ışıkta birbirinizin gözlerinde ve teninde kaybolmaya hazırsınız.',
+    props: { surface: 'kral dairesi yatağına', actionUndress: 'ipek bornozun kuşağını çözer', kissArea: 'omuzlarından sırtına' }
+  },
+  {
+    id: 'nurse-night',
+    category: 'fantasy',
+    icon: '🏥',
+    badge: 'badge-fantasy',
+    badgeText: '🏥 ÖZEL HEMŞİRE & NÖBET',
+    title: 'Gece Nöbeti & Özel Bakım',
+    desc: 'Sessiz VIP katında tansiyon ölçümü, steteskopla göğüs dinleme ve kilitlenen kapılar ardında alevlenen nöbet fantezisi.',
+    atmosphere: 'Sessiz VIP Katı · 02:00 · Kilitli Nöbet Odası',
+    roles: { female: 'Özel Nöbetçi Hemşire', male: 'VIP Hasta' },
+    intro: 'Gece nöbetinde hastane koridorları tamamen ıssız. Özel hemşire odaya girip kapıyı arkasından kilitlerken nabızları tavan yaptıran özel muayene başlar.',
+    props: { surface: 'hasta yatağına', actionUndress: 'beyaz önlüğün düğmelerini tek tek açar', kissArea: 'göğsünden boynuna' }
+  },
+  {
+    id: 'spa-massage',
+    category: 'sensual',
+    icon: '💆',
+    badge: 'badge-sensual',
+    badgeText: '✨ MASAJ & TENSEL DOKUNUŞ',
+    title: 'Aromaterapi & Özel Masaj Terapisi',
+    desc: 'Sıcak lavanta ve sandal ağacı yağları, omuzlardan bele inen sıcak parmaklar ve kontrolün tamamen teslim edildiği bir seans.',
+    atmosphere: 'Loş Mum Işıkları · Sandal Ağacı & Yasemin Yağları',
+    roles: { female: 'Özel Masaj Terapisti', male: 'Misafir' },
+    intro: 'Loş odada kokulu mumlar yanıyor, hafif bir Uzak Doğu melodisi çalıyor. Isıtılmış aromatik yağlar avuçlara dökülürken ilk sıcak dokunuş başlar.',
+    props: { surface: 'masaj masasına', actionUndress: 'yağlı elleriyle havluyu kenara kaydırır', kissArea: 'bel kıvrımından boynuna' }
+  },
+  {
+    id: 'stormy-chalet',
+    category: 'romantic',
+    icon: '🍷',
+    badge: 'badge-romantic',
+    badgeText: '💖 ŞÖMİNE & TEK BATTANİYE',
+    title: 'Fırtınalı Dağ Evi & Şömine Ateşi',
+    desc: 'Kar fırtınasında elektriksiz kalan dağ evi. Kırmızı şarap, tek bir kalın battaniye ve şömine önündeki postta alevlenen tutku.',
+    atmosphere: 'Kar Fırtınası · Kesilen Elektrikler · Çıtırdayan Şömine',
+    roles: { female: 'Dağ Evi Misafiri', male: 'Ev Sahibi' },
+    intro: 'Dışarıda tipi uğulduyor, elektrikler tamamen kesik. Şöminenin alevleri odanın duvarlarında dans ederken battaniyenin altında birbirinize sokuluyorsunuz.',
+    props: { surface: 'şöminenin önündeki yumuşak posta', actionUndress: 'ıslak kalın kazağı çıkarıp atar', kissArea: 'şömine alevinde parıldayan teninden' }
+  },
+  {
+    id: 'photo-studio',
+    category: 'sensual',
+    icon: '📸',
+    badge: 'badge-sensual',
+    badgeText: '✨ FOTOĞRAF ÇEKİMİ & POZLAR',
+    title: 'Özel Stüdyo: Model & Fotoğrafçı',
+    desc: 'Kamera önünde cüretkar pozlarla başlayan çekimin vizörü bırakıp tene dokunmaya dönüştüğü nefes kesici bir hikaye.',
+    atmosphere: 'Karanlık Stüdyo · Loş Spot Işıkları · Caz Müziği',
+    roles: { female: 'Çekici Model', male: 'Profesyonel Fotoğrafçı' },
+    intro: 'Stüdyonun kapısı kilitlendi, sadece bir spot ışığı yanıyor. Kamera vizöründen süzülen bakışlar her çekilen karede daha da cüretkarlaşıyor.',
+    props: { surface: 'deri stüdyo koltuğuna', actionUndress: 'kamerayı bırakıp askıları indirir', kissArea: 'flaş ışığında çıplak omuzlarından' }
+  },
+  {
+    id: 'sensual-tango',
+    category: 'sensual',
+    icon: '💃',
+    badge: 'badge-sensual',
+    badgeText: '🔥 TUTKULU TANGO & RİTİM',
+    title: 'Tango Gecesi & Ten Tene Dans',
+    desc: 'Bacakların kenetlendiği, bellerin sımsıkı kavrandığı ve ritmin yerini kontrolsüz bir tensel arzuya bıraktığı dans gecesi.',
+    atmosphere: 'Aynalı Dans Stüdyosu · Bandoneon Melodileri',
+    roles: { female: 'Zarif Dansçı', male: 'Karizmatik Partner' },
+    intro: 'Müzik çalmaya başladığında el bele sımsıkı yerleşir. Aynadaki yansımalara bakarken her dönüşte aradaki mesafe tamamen sıfıra iner.',
+    props: { surface: 'stüdyonun aynalı duvarına', actionUndress: 'yırtmaçlı elbiseyi hafifçe sıyırır', kissArea: 'terleyen boynundan köprücük kemiğine' }
+  },
+  {
+    id: 'yacht-night',
+    category: 'luxury',
+    icon: '⛵',
+    badge: 'badge-luxury',
+    badgeText: '🌊 LÜKS YAT & AY IŞIĞI',
+    title: 'Açık Deniz & Gece Güvertesi',
+    desc: 'Karadan millerce uzakta, dalgaların sallantısında jakuzili güverteden ahşap kamaraya uzanan sınırsız bir deniz kaçamağı.',
+    atmosphere: 'Açık Deniz · Yıldızlar Altında Jakuzili Güverte',
+    roles: { female: 'Özel Misafir', male: 'Yat Kaptanı' },
+    intro: 'Yat açık denizde demir attı. Gece rüzgarı teninizi ürpertirken arkadan sarılan sıcak kollar ve bir kadeh şampanya ortamı ısıtır.',
+    props: { surface: 'ahşap lüks kamara yatağına', actionUndress: 'ıslak mayoyu omuzlardan kaydırır', kissArea: 'deniz kokan boynundan beline' }
+  },
+  {
+    id: 'secret-meeting',
+    category: 'fantasy',
+    icon: '🎭',
+    badge: 'badge-fantasy',
+    badgeText: '🎭 MASKE & GİZEMLİ TUTKU',
+    title: 'Venedik Maskeli Balo & Gizli Randevu',
+    desc: 'Maskelerin ardında kimliği gizleyen iki tutkulu aşık. Çıkarılan ipek eldivenler, çözülen korseler ve sarayda yankılanan fısıltılar.',
+    atmosphere: 'Tarihi Venedik Sarayı · Kadife Perdeli Gizli Oda',
+    roles: { female: 'Gizemli Kontes', male: 'Yabancı Beyefendi' },
+    intro: 'Sarayın kalabalık balo salonundan sıyrılıp kadife perdeli gizli odaya geçiyorsunuz. Maskelerin ardından sadece parıldayan gözler görünüyor.',
+    props: { surface: 'kadife kaplı divana', actionUndress: 'ipek maskeyi ve korse iplerini çözer', kissArea: 'maskenin altından çıkan dudaklarından' }
+  },
+  {
+    id: 'midnight-kitchen',
+    category: 'romantic',
+    icon: '🍝',
+    badge: 'badge-romantic',
+    badgeText: '🍷 TADIM OYUNU & TEZGAH',
+    title: 'Gece Yarısı Mutfak Kaçamağı & Tadım',
+    desc: 'Gece yarısı mutfakta karşılaşma. Gözleri kapatarak dudaktan çilek ve çikolata tadımı, mermer tezgaha kaldırma ve ateşli yakınlaşma.',
+    atmosphere: 'Loş Mutfak · Şarap Kadehleri · Çilek & Çikolata',
+    roles: { female: 'Gece Kaçakçısı', male: 'Mutfak Ustası / Partner' },
+    intro: 'Saat gece 03:00. Mutfakta buzdolabı ışığında karşılaşıyorsunuz. Açılan bir şişe şarap ve çikolata eşliğinde tatlı ve tensel oyun başlar.',
+    props: { surface: 'mermer mutfak tezgahına', actionUndress: 'pijama üstünü yavaşça aralar', kissArea: 'eritilmiş çikolatanın aktığı dudaklarından' }
+  },
+  {
+    id: 'night-drive',
+    category: 'sensual',
+    icon: '🚗',
+    badge: 'badge-sensual',
+    badgeText: '⚡ GECE SÜRÜŞÜ & DERİ KOLTUK',
+    title: 'Gece Sürüşü & Seyir Tepesi',
+    desc: 'Karanlık yollarda sürüşten sonra seyir noktasında duran araba. Yatırılan koltuklar, buğulanan camlar ve dar alanda tavan yapan tutku.',
+    atmosphere: 'Şehir Işıklarına Karşı Seyir Tepesi · Deri Koltuk & Caz',
+    roles: { female: 'Yan Koltuktaki Partner', male: 'Sürücü' },
+    intro: 'Araba seyir tepesinde durdu, motor kapatıldı. Şehrin ışıkları camdan yansırken çalan caz müziği eşliğinde eller birbirini bulur.',
+    props: { surface: 'tamamen yatırılan deri koltuğa', actionUndress: 'emniyet kemerini çözüp gömleği açar', kissArea: 'buğulanan camın önünde boynundan' }
+  },
+  {
+    id: 'secret-library',
+    category: 'office',
+    icon: '📚',
+    badge: 'badge-office',
+    badgeText: '🤫 SESSİZLİK & GİZLİ ÇEKİM',
+    title: 'Tarihi Kütüphanenin Gizli Odası',
+    desc: 'Kapanıştan sonra kilitlenen kütüphane. Kitap rafları arasında fısıltılar, ahşap masaya oturma ve sessiz kalmaya çalışırken artan nabız.',
+    atmosphere: 'Tarihi Ahşap Kütüphane · Tozlu Deri Ciltler & Fısıltılar',
+    roles: { female: 'Meraklı Araştırmacı', male: 'Kütüphane Görevlisi' },
+    intro: 'Kütüphanenin ağır ahşap kapısı kilitlendi. Loş masa lambasının altında fısıltıyla konuşurken aranızdaki çekim sessizliği yırtar.',
+    props: { surface: 'büyük meşe okuma masasına', actionUndress: 'hırkanın düğmelerini sessizce açar', kissArea: 'sessiz fısıltıların döküldüğü dudaklarından' }
+  }
+];
+
+const BRANCH_CONFIG = {
+  hot: {
+    name: '🔥 Masada Sınırsız Tutku & Tensel Temas Yolu',
+    tag: 'tag-hot',
+    tagLabel: '🔥 +18 Ateşli Hamle',
+    icon: '🔥'
+  },
+  sweet: {
+    name: '🌸 Derin Romantizm & Ruhsal Bağ Yolu',
+    tag: 'tag-sweet',
+    tagLabel: '🌸 Derin Romantizm',
+    icon: '🌸'
+  },
+  funny: {
+    name: '😂 Zeki & Çapkın Meydan Okuma Yolu',
+    tag: 'tag-funny',
+    tagLabel: '😂 Çapkın Meydan Okuma',
+    icon: '😂'
+  },
+  deep: {
+    name: '👑 Dominant & Gizemli Otorite Yolu',
+    tag: 'tag-deep',
+    tagLabel: '👑 Dominant Hakimiyet',
+    icon: '👑'
+  }
+};
+
+const ACT_TITLES = [
+  'Aşama 1: Açılış & İlk Kıvılcım',
+  'Aşama 2: Mesafenin Sıfırlanması & İlk Dokunuş',
+  'Aşama 3: Kıyafetler, Düğmeler & Tensel İtiraf',
+  'Aşama 4: Yatağa / Masaya Geçiş & Kontrolün Bırakılması',
+  'Aşama 5: Tutkunun Zirvesine Tırmanış',
+  'Aşama 6: Doruk Noktası & Birleşen Bedenler',
+  'Aşama 7: Büyük Final & Ebedi Gece'
+];
+
+// 7 AŞAMALI AKILLI VE KAPSAMLI DİYALOG MOTORU
+function getActAwareDialoguePool(scenario, actIndex, isStarterTurn, lastVibe, isFemaleTurn) {
+  const fRole = scenario.roles ? scenario.roles.female : 'Kadın';
+  const mRole = scenario.roles ? scenario.roles.male : 'Erkek';
+  const surface = scenario.props ? scenario.props.surface : 'masaya';
+  const kissArea = scenario.props ? scenario.props.kissArea : 'boynundan dudağına';
+
+  // Act 0: Açılış & Atmosfer
+  if (actIndex === 0) {
+    if (isStarterTurn) {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Burada seninle bu saatte baş başa kalmak... Kalp atışlarımı şimdiden hızlandırıyor. Yoksa aklında başka planlar mı vardı?`
+            : `Bu gece sadece ikimizin olacağını bildiğim andan beri başka hiçbir şeye odaklanamıyorum... Karşımda büyüleyicisin.`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Kışkırtıcı Açılış',
+          hint: 'Gözlerinin içine kilitlenip mesafeyi bir adım kapatır',
+          effect: 'Loş ışıkta bakışlar kenetlenir, gerilim yükselir',
+          sceneBeat: `${scenario.title} mekanında sessizlik derinleşti; göz göze geldiğiniz an aranızdaki tensel elektrik odayı sardı.`,
+          branchTitle: '🔥 +18 Tutku Yolu'
+        },
+        {
+          text: isFemaleTurn
+            ? `Şehrin bu sessizliğinde senin yanında olmak öyle huzur verici ki... İyi ki bu geceyi paylaşıyoruz.`
+            : `Seninle baş başa kaldığım her an dünyanın bütün yorgunluğunu unutuyorum... Çok güzelsin.`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Romantik Giriş',
+          hint: 'Hafifçe gülümseyerek kadehini kaldırır',
+          effect: 'Sıcak bir tebessüm ve göz teması',
+          sceneBeat: 'Ortamdaki samimiyet derinleşti; aranızda kalıcı bir duygusal bağ filizlendi.',
+          branchTitle: '🌸 Romantik Gece Yolu'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bakıyorum da karşımda sakin görünmeye çalışıyorsun ama ellerinin heyecandan titrediğini görebiliyorum!`
+            : `Karşımda böyle dururken sakin kalabilen birini tanıyorsan hemen söyle, gidip ona ödül vereyim!`,
+          vibe: 'funny',
+          tagLabel: '😂 Çapkın Takılma',
+          hint: 'Göz kırparak dudağını ısırır',
+          effect: 'Kahkaha ile resmiyet dağılır',
+          sceneBeat: 'Çapkın bir kahkaha odayı ısıttı; flörtöz meydan okuma resmen başladı.',
+          branchTitle: '😂 Zeki & Çapkın Yol'
+        },
+        {
+          text: isFemaleTurn
+            ? `Kapı kilitlendiğine göre artık bütün rolleri unutalım... Bu gece kontrol tamamen bizim arzularımızda.`
+            : `Bu andan itibaren kuralları biz yazıyoruz; ve ilk kural birbirimize hiçbir şey saklamamak.`,
+          vibe: 'deep',
+          tagLabel: '👑 Dominant Başlangıç',
+          hint: 'Dimdik durup cüretkar bir adım atar',
+          effect: 'Otorite kurulur, nefesler sıklaşır',
+          sceneBeat: 'Roller ve unvanlar feda edildi; odada sadece iki tutkulu irade kaldı.',
+          branchTitle: '👑 Dominant Güç Yolu'
+        }
+      ];
+    } else {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Bana doğru böyle cüretkar yürümen içimdeki tüm direnci eritiyor... Gel ve ne kadar sabırsız olduğunu göster.`
+            : `Bu davetini geri çevirmek imkansız... Bütün gece seni kollarımda tutmak için sabırsızlanıyorum.`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Ateşli Cevap',
+          hint: 'Beline sarılıp dudak mesafesine çeker',
+          effect: 'Fiziksel temas başlar, mesafeler biter',
+          sceneBeat: 'Bedenler ilk kez birbirine değdi; tenin tenle buluşması aradaki son engeli de yıktı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Ses tonundaki o sıcaklık kalbimi öyle titretiyor ki... Yanından bir an bile ayrılmak istemiyorum.`
+            : `Senin bu tatlı bakışların benim en büyük zaafım... Seni daima böyle sarıp korumak istiyorum.`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Şefkatli Karşılık',
+          hint: 'Elini elinin üzerine koyup okşar',
+          effect: 'Parmaklar kenetlenir',
+          sceneBeat: 'Kenetlenen eller sevginin ve güvenin en sıcak ifadesi oldu.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Demek heyecanımı anladın ha? O zaman bu heyecanın bedelini bana ödetmeye hazır olmalısın!`
+            : `İtiraf ediyorum, karşında aklımı kaybetmek üzereyim; ama bu oyunu sonuna kadar oynayacağım!`,
+          vibe: 'funny',
+          tagLabel: '😂 Esprili Tehdit',
+          hint: 'Kıkırdayarak sarılır',
+          effect: 'Gülümseyerek yakınlaşma',
+          sceneBeat: 'Esprili tehdit yerini sımsıkı bir kucaklaşmaya bıraktı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Kuralları senin yazmana izin veriyorum; ama ilk hamleyi benim yapmam şartıyla.`
+            : `İlk hamle hakkı senin güzelim; bakalım arzuların seni nereye kadar götürecek.`,
+          vibe: 'deep',
+          tagLabel: '👑 Karşılıklı Hakimiyet',
+          hint: 'Çenesinden tutup gözlerinin içine bakar',
+          effect: 'Bakışlar kilitlenir',
+          sceneBeat: 'Güç dengesi şehvete dönüştü; iki aşık birbirinin gözünde kayboldu.'
+        }
+      ];
+    }
+  }
+
+  // Act 1: Mesafenin Sıfırlanması & İlk Dokunuş
+  if (actIndex === 1) {
+    if (isStarterTurn) {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Nefesinin sıcaklığı boynumu yakıyor... ${surface} doğru biraz daha yaklaşıp bana sarılmak istemez misin?`
+            : `Boynundan başlayıp tüm tenini hissetmek istiyorum... Artık aramızda tek bir milimetre bile kalmamalı.`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Tensel Yaklaşım',
+          hint: 'Elini sırtına kaydırıp kendine yapıştırır',
+          effect: 'Bedenler kenetlenir, nefesler karışır',
+          sceneBeat: `Temas derinleşti; kumaşların üzerinden bile yayılan sıcaklık odayı alev alev yaptı.`
+        },
+        {
+          text: isFemaleTurn
+            ? `Ellerinin sıcaklığı içimi titretiyor... Başımı göğsüne yaslayıp kokunu içime çekmek öyle güzel ki.`
+            : `Saçlarının kokusu aklımı başımdan alıyor... Seni sabaha kadar böyle koklamak istiyorum.`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Sıcak Şefkat',
+          hint: 'Yanağını boyun girintisine koyup derin nefes alır',
+          effect: 'Huzur dolu derin sarılma',
+          sceneBeat: 'Boyuna gömülen yüz ve çekilen derin koku tüm mekanı romantizmle doldurdu.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bakıyorum da kalp atışların mesai rekoru kırıyor, yoksa bu kadar yakınıma gelmeye hazır değil miydin?`
+            : `Kalp atışlarımın hızından şikayetçiysen suçlusu sensin; faturasını seni öperek keseceğim!`,
+          vibe: 'funny',
+          tagLabel: '😂 Çapkın Teşhis',
+          hint: 'Elini kalbinin üzerine koyup gülümser',
+          effect: 'Hızlı kalp atışları hissedilir',
+          sceneBeat: 'Hızlanan kalp atışları kıkırdamalar eşliğinde temasın boyutunu artırdı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Gözlerimin içine bakarken ne kadar arzuladığını gizleyemiyorsun... İstediğin gibi dokunmaktan çekinme.`
+            : `Gözlerindeki bu teslimiyeti seviyorum; ve bu gece sana asla unutamayacağın anlar yaşatacağım.`,
+          vibe: 'deep',
+          tagLabel: '👑 Şehvetli Teslim',
+          hint: 'Dudaklarını dudaklarına milim kala durdurur',
+          effect: 'Sınırlar kalkar, tam hakimiyet',
+          sceneBeat: 'Tüm çekingenlikler silindi; saf arzu mekanın tek hakimi oldu.'
+        }
+      ];
+    } else {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Parmaklarının sırtımda dolaşması beni deli ediyor... Beni kendine daha da sıkı çek.`
+            : `Teninin bu yumuşaklığı aklımı başımdan alıyor... Seni bırakmaya hiç niyetim yok.`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Sıcak Kabul',
+          hint: 'Tırnaklarını sırtına hafifçe batırır',
+          effect: 'Kucaklaşma sertleşir',
+          sceneBeat: 'Sırtı kavrayan parmaklar tutkunun şiddetini ikiye katladı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Senin yanında güvende olmak ve böyle sevilmek dünyalara bedel sevgilim...`
+            : `Sen benim en değerli varlığımsın... Kalbim daima seninle atacak.`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Ebedi Güven',
+          hint: 'Alnını alnına yaslar',
+          effect: 'Ruhsal bütünleşme',
+          sceneBeat: 'Alınların buluşmasıyla derin bir huzur ve tensel bağ kuruldu.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Faturayı kesmeye bu kadar hevesliysen, ilk taksiti dudaklarımla ödememe ne dersin?`
+            : `Taksitleri peşin almayı tercih ederim; özellikle de bu kadar tatlı dudaklardan!`,
+          vibe: 'funny',
+          tagLabel: '😂 Dudak Taksiti',
+          hint: 'Dudağını öpüp çapkınca geri çekilir',
+          effect: 'Kısa ve kışkırtıcı öpücük',
+          sceneBeat: 'Kısa ve kışkırtıcı öpücük odadaki ateşi körükledi.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bana sahip olma arzun içimi yakıyor... Şimdi ipleri eline al ve devam et.`
+            : `Bu gecenin sonunda ikimiz de bu ateşte tamamen erimiş olacağız.`,
+          vibe: 'deep',
+          tagLabel: '👑 Güçlü Karşılık',
+          hint: 'Belinden kavrayıp ${surface} yaslar',
+          effect: 'Masaya/Yatağa yaslama',
+          sceneBeat: 'Yaslanan bedenler arasındaki gerilim tavan yaptı.'
+        }
+      ];
+    }
+  }
+
+  // Act 2: Kıyafetler, Düğmeler & Tensel İtiraf
+  if (actIndex === 2) {
+    if (isStarterTurn) {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Kıyafetlerim üzerimde fazla gelmeye başladı... Düğmelerimi tek tek çözüp tenimi hissetmek ister misin?`
+            : `Üzerindeki fazlalıklardan kurtulmana yardım etmeme izin ver... Teninin her zerresini görmek istiyorum.`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Düğmeleri Çözme',
+          hint: 'Kumaşı omuzlarından yavaşça kaydırır',
+          effect: 'Düğmeler açılır, ten parıldar',
+          sceneBeat: 'Düğmeler tek tek çözüldü; açığa çıkan tenin sıcaklığı odayı aydınlattı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bana dokunduğun her an ruhumun sana ait olduğunu daha çok hissediyorum... Çok özelsin.`
+            : `Senin bu kusursuz güzelliğin karşısında büyülenmemek imkansız... Bir sanat eseri gibisin.`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Büyüleyici İtiraf',
+          hint: 'Çıplak omzuna nazik bir öpücük kondurur',
+          effect: 'Omuzdan öpücük, sevgi dolu bakış',
+          sceneBeat: 'Omuza konan ılık öpücük şefkati tutkuyla birleştirdi.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Beni bu kadar hızlı soyarsan yarın giyecek hiçbir şeyim kalmayacak haberin olsun!`
+            : `Kıyafetlerini dert etme güzelim, yarın sana tüm mağazayı satın alırım!`,
+          vibe: 'funny',
+          tagLabel: '😂 Çapkın Soyunma',
+          hint: 'Gülerek ceketini yere fırlatır',
+          effect: 'Kıyafetler fırlatılır',
+          sceneBeat: 'Fırlatılan kıyafetlerle birlikte resmiyet tamamen bitti.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bütün zırhlarımı çıkardım... Karşında tamamen savunmasızım. Şimdi beni kucağına al.`
+            : `Savunmasız halin bile dünyanın en büyüleyici görüntüsü... Bu gece sana hükmedeceğim.`,
+          vibe: 'deep',
+          tagLabel: '👑 Mutlak Teslimiyet',
+          hint: 'Göğsünü göğsüne bastırır',
+          effect: 'Çıplak ten teması',
+          sceneBeat: 'Çıplak tenlerin ilk temasıyla odada adeta bir şimşek çaktı.'
+        }
+      ];
+    } else {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Ellerinin sıcaklığı vücudumda gezinirken nefesim kesiliyor... Durma, devam et.`
+            : `Teninin bu ipeksi yumuşaklığı beni sarhoş ediyor... Seni baştan aşağı öpeceğim.`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Ten Tene Dokunuş',
+          hint: 'Parmaklarını sırtında ve belinde gezdirir',
+          effect: 'Derin iniltiler ve temas',
+          sceneBeat: 'Parmaklar kıvrımlarda gezindikçe nefesler hızlandı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Senin gözlerinde gördüğüm aşk dünyadaki her şeyden daha kıymetli...`
+            : `Gözlerindeki bu ışıltı ömrümün en büyük mutluluğu sevgilim...`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Ruhsal Birlik',
+          hint: 'Saçlarını nazikçe arkaya iter',
+          effect: 'Yüz okşama, derin bağ',
+          sceneBeat: 'Göz göze paylaşılan bu an kalıcı bir hatıraya dönüştü.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Alışveriş teklifini kabul ediyorum ama bu gecenin performansına göre puan vereceğim!`
+            : `Puanlama konusunda hiç endişem yok, bu gece tam not alacağımdan eminim!`,
+          vibe: 'funny',
+          tagLabel: '😂 Puanlama Bahsi',
+          hint: 'Göz kırparak dudağından öper',
+          effect: 'Bahisli öpüşme',
+          sceneBeat: 'Tatlı rekabet aradaki ateşi daha da harlandırdı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bana hükmetmeni zevkle izleyeceğim; ama seni nasıl baştan çıkardığımı unutma.`
+            : `Beni baştan çıkardığını inkar etmiyorum; ve şimdi bu zaferin tadını birlikte çıkaracağız.`,
+          vibe: 'deep',
+          tagLabel: '👑 Çekici Zafer',
+          hint: 'Bacaklarının arasına adım atar',
+          effect: 'Kucaklama pozisyonu',
+          sceneBeat: 'Bedenler arasındaki son mesafe de tarihe karıştı.'
+        }
+      ];
+    }
+  }
+
+  // Act 3: Yatağa / Masaya Geçiş & Hakimiyet
+  if (actIndex === 3) {
+    if (isStarterTurn) {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Beni ${surface} kaldır ve bacaklarımın beline dolanmasına izin ver... Sabrım tükendi.`
+            : `Seni kucağıma alıp ${surface} yatırıyorum... Bu gece sınırları tamamen yıkacağız.`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Masaya/Yatağa Kaldırma',
+          hint: 'İki eliyle belinden tutup kaldırır',
+          effect: 'Masaya/Yatağa oturulur, bacaklar dolanır',
+          sceneBeat: `${surface.toUpperCase()} taşınan bedenle birlikte tensel güç birleşti; odadaki sıcaklık maksimuma ulaştı.`
+        },
+        {
+          text: isFemaleTurn
+            ? `Beni böyle güçlü kollarında taşırken sana ne kadar güvendiğimi biliyorsun değil mi?`
+            : `Seni kollarımda taşırken dünyanın en değerli hazinesini tutuyormuş gibi hissediyorum.`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Değerli Emanet',
+          hint: 'Kollarına güvenle yaslanır',
+          effect: 'Sımsıkı kucaklaşma',
+          sceneBeat: 'Kollardaki sıcaklık güveni ve sevgiyi doruğa taşıdı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bakıyorum da çok güçlüsün; ama asıl güç bu masada bana dayanabilmekte!`
+            : `Dayanıklılık konusunda beni hafife alma güzelim; sabahı zor göreceksin!`,
+          vibe: 'funny',
+          tagLabel: '😂 Güç Gösterisi',
+          hint: 'Kahkaha atarak sarılır',
+          effect: 'Neşeli meydan okuma',
+          sceneBeat: 'Gülüşmeler eşliğinde pozisyon alındı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bu anın kontrolünü tamamen sana veriyorum... Bana ne yapmak istiyorsan yap.`
+            : `Kontrolü bana verdiğin için pişman olmayacaksın; bu gece senin için unutulmaz olacak.`,
+          vibe: 'deep',
+          tagLabel: '👑 Mutlak Hakimiyet',
+          hint: 'Gözlerini gözlerinden ayırmaz',
+          effect: 'Derin ve kilitli bakışma',
+          sceneBeat: 'Kontrolün bırakılmasıyla arzu zincirlerinden boşaldı.'
+        }
+      ];
+    } else {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Bacaklarım beline dolandığında içimdeki ateş öyle bir yükseldi ki... Beni dudaklarımdan öp!`
+            : `Dudaklarına yapıştığım anda tüm dünyanın sustuğunu hissediyorum...`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Tutkulu Kilitlenme',
+          hint: 'Dudaklarına derinlemesine yapışır',
+          effect: 'Uzun ve ıslak öpüşme',
+          sceneBeat: 'Dudakların birleşmesiyle nefesler tek bir ritme girdi.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Senin kokun, senin tenin... Hayatımda tattığım en güzel duygu bu.`
+            : `Seninle her saniye ömrüme ömür katıyor sevgilim...`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Saf Mutluluk',
+          hint: 'Yüzünü öpücüklere boğar',
+          effect: 'Yüze kondurulan öpücükler',
+          sceneBeat: 'Öpücükler sevginin en saf halini yansıttı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Sabahı zor görmek mi? İddiayı ikiye katlıyorum, bakalım kim önce pes edecek!`
+            : `Bahsi ikiye katlaman hoşuma gitti; ödülümü şimdiden düşünmeye başladım!`,
+          vibe: 'funny',
+          tagLabel: '😂 İddia Büyütme',
+          hint: 'Göz kırparak boynunu ısırır',
+          effect: 'Hafif ve tatlı ısırık',
+          sceneBeat: 'Boyna konan ısırık ortama tatlı bir vahşilik kattı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bana bu kadar sahip çıkman içimi titretiyor... Senin kadının olmaktan gurur duyuyorum.`
+            : `Sen sadece bu gecenin değil, ömrümün tek kraliçesisin.`,
+          vibe: 'deep',
+          tagLabel: '👑 Kraliçe İlanı',
+          hint: 'Alnından öpüp belini kavrar',
+          effect: 'Saygılı ve derin tutku',
+          sceneBeat: 'Tutku ve saygı tek bir potada eridi.'
+        }
+      ];
+    }
+  }
+
+  // Act 4: Tutkunun Zirvesine Tırmanış
+  if (actIndex === 4) {
+    if (isStarterTurn) {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Dokunuşların beni alev alev yakıyor... Kalbimin nasıl çarptığını ellerinde hisset ve beni hızlandır.`
+            : `Teninin sıcaklığı içimi kavuruyor... Bedenlerimizi tek bir alev haline getirmek istiyorum.`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Alevli Tırmanış',
+          hint: 'Ellerini vücudunda gezdirip ritmi artırır',
+          effect: 'Hızlanan nefesler ve iniltiler',
+          sceneBeat: 'Odada yükselen nefes sesleri ve ten sürtünmeleri zirvenin yaklaştığını haber verdi.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Seninle bu anı yaşamak ömrümün en büyük rüyası... Kalbim tamamen sana ait.`
+            : `Sen benim kaderimsin... Bu dünyadaki en güzel hediyemsin.`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Ebedi Bağlantı',
+          hint: 'Göğsüne başını koyup kalp sesini dinler',
+          effect: 'Kalp kalbe kenetlenme',
+          sceneBeat: 'İki kalp tek bir davul gibi aynı ritimde çarpmaya başladı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bakıyorum da pes etmeye hiç niyetin yok; ama uyarayım, birazdan aklın başından gidecek!`
+            : `Aklımın başımdan gitmesine çoktan razıyım, yeter ki sebebi sen ol güzelim!`,
+          vibe: 'funny',
+          tagLabel: '😂 Çapkın Meydan Okuma',
+          hint: 'Gülümseyerek kulağına fısıldar',
+          effect: 'Kulağa sıcak fısıltı',
+          sceneBeat: 'Kulağa çarpan sıcak fısıltı tüm tüyleri diken diken etti.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bu gecenin doruk noktasına doğru gidiyoruz... Bana asla unutamayacağım bir final yaşat.`
+            : `Bu gece hafızandan asla silinmeyecek; hazır ol, zirveye çıkıyoruz.`,
+          vibe: 'deep',
+          tagLabel: '👑 Zirveye Giriş',
+          hint: 'Gözlerini ayırmadan son adıma geçer',
+          effect: 'Doruk noktası pozisyonu',
+          sceneBeat: 'Doruk noktasına giden son kapı aralandı.'
+        }
+      ];
+    } else {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Her dokunuşunda içimde havai fişekler patlıyor... Lütfen hiç durma!`
+            : `Seni böyle kendinden geçmiş görmek beni daha da çılgına çeviriyor...`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Çılgın Arzu',
+          hint: 'Sımsıkı sarılıp kendini teslim eder',
+          effect: 'Maksimum tensel birleşme',
+          sceneBeat: 'Bedenler arasındaki sürtünme odayı tamamen yaktı kavurdu.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Seni her şeyden çok seviyorum sevgilim... Bu an sonsuza kadar sürsün.`
+            : `Ben de seni her şeyden çok seviyorum... Sonsuza kadar benimsin.`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Büyük İtiraf',
+          hint: 'Gözyaşıyla karışık mutluluk öpücüğü',
+          effect: 'Duygusal derinlik',
+          sceneBeat: 'Gözlerden dökülen mutluluk yaşları aşkın mühürü oldu.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Aklını başından alacağımı söylemiştim! Bakıyorum da konuşacak halin bile kalmadı!`
+            : `Konuşmaya gerek yok güzelim; şu an sadece bedenlerimiz konuşsun!`,
+          vibe: 'funny',
+          tagLabel: '😂 Sessiz Anlaşma',
+          hint: 'Göz kırparak dudaklarına kapanır',
+          effect: 'Sonsuz öpüşme',
+          sceneBeat: 'Kelimeler tükendi; geriye sadece tenlerin dansı kaldı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bütün benliğimle sana aitim... Şimdi doruğa birlikte çıkalım.`
+            : `Birlikte yanacağız ve birlikte zirveye ulaşacağız sevgilim.`,
+          vibe: 'deep',
+          tagLabel: '👑 Büyük Birlik',
+          hint: 'Ellerini kenetleyip son hamleyi yapar',
+          effect: 'Kenetlenen eller ve zirve',
+          sceneBeat: 'Kenetlenen eller zirvenin habercisi oldu.'
+        }
+      ];
+    }
+  }
+
+  // Act 5: Doruk Noktası & Birleşen Bedenler (+18 Zirve)
+  if (actIndex === 5) {
+    if (isStarterTurn) {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Ah... Bu his inanılmaz! Bütün vücudum titriyor, beni sımsıkı tut ve zirveye benimle gel!`
+            : `Seninle bu dorukta olmak... Aklımı başımdan alıyor, sımsıkı sarıl bana sevgilim!`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Mutlak Doruk Noktası',
+          hint: 'Sırtını sımsıkı kavrayıp nefesini içine çeker',
+          effect: 'Yoğun titreme ve zevk patlaması',
+          sceneBeat: 'Odada yankılanan derin inlemelerle birlikte tensel doruk noktasına ulaşıldı; iki beden tek bir kalp gibi çarptı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Ruhumun teninle birleştiği an bu... Hayatımda hiç bu kadar aşık ve mutlu hissetmemiştim.`
+            : `Sen benim bu dünyada başıma gelen en mucizevi şeysin... Seni tüm kalbimle seviyorum.`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Ruhsal Doruk',
+          hint: 'Gözlerini kapatıp göğsüne yaslanır',
+          effect: 'Derin ruhsal tatmin',
+          sceneBeat: 'Sevginin ve aşkın en saf zirvesinde kalpler sonsuz bir bağla kenetlendi.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Vay canına... Sanırım bu gece ikimiz de rekorlar kitabına girdik!`
+            : `Rekor kırdığımız kesin; ve bu şampiyonluğun kupası senin o muhteşem dudakların!`,
+          vibe: 'funny',
+          tagLabel: '😂 Zafer Sarhoşluğu',
+          hint: 'Gülümseyerek nefes nefese bakar',
+          effect: 'Nefes nefese gülüşme',
+          sceneBeat: 'Nefes nefese paylaşılan tebessüm gecenin en tatlı anı oldu.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bu gecenin hükümdarı biziz... Bedenlerimiz de ruhlarımız da artık ebediyen bir.`
+            : `Artık bizi hiçbir şey ayıramaz; bu gece birbirimize mühürlendik.`,
+          vibe: 'deep',
+          tagLabel: '👑 Ebedi Mühür',
+          hint: 'Alnını alnına dayayıp nefeslerini paylaşır',
+          effect: 'Ebedi mühürlenme',
+          sceneBeat: 'Gece en görkemli tensel ve duygusal tacını taktı.'
+        }
+      ];
+    } else {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Kollarında böyle erimek... Bütün hücrelerim senin aşkınla ve tutkunla dolu.`
+            : `Seni böyle kollarımda tutarken hayatın ne kadar kusursuz olduğunu anlıyorum...`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Tatlı Tükeniş',
+          hint: 'Göğsüne gömülüp sakinleşen nefesini dinler',
+          effect: 'Sıcak sarılma ve gevşeme',
+          sceneBeat: 'Ateşli fırtına yerini sıcak ve tatlı bir huzura bıraktı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Sen benim ebedi aşkımsın... Kalbimin her atışı senin adını fısıldıyor.`
+            : `Ömrümün sonuna kadar seni böyle seveceğime yemin ederim sevgilim...`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Ebedi Yemin',
+          hint: 'Dudaklarına yumuşak bir veda öpücüğü kondurur',
+          effect: 'Aşk yemini',
+          sceneBeat: 'Fısıldanan yeminler odanın sessizliğinde yankılandı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Yarın sabah kahvaltıyı yatağa kimin getireceği artık çok net belli oldu!`
+            : `Kahvaltıyı krallara layık hazırlayacağım güzelim, çünkü bunu fazlasıyla hak ettin!`,
+          vibe: 'funny',
+          tagLabel: '😂 Sabah Sözü',
+          hint: 'Göz kırparak yanağını sıkar',
+          effect: 'Keyifli anlaşma',
+          sceneBeat: 'Yarın sabahın tatlı planları şimdiden yapıldı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bu gece aramızdaki tüm mesafeler sonsuza kadar yok oldu... Artık hep böyle kalalım.`
+            : `Sonsuza kadar seninleyim; bu gece başlayan masal hiç bitmeyecek.`,
+          vibe: 'deep',
+          tagLabel: '👑 Sonsuz Masal',
+          hint: 'Saçlarını okşayıp kendine çeker',
+          effect: 'Derin bağlılık',
+          sceneBeat: 'Hikaye ölümsüz bir bağla geleceğe uzandı.'
+        }
+      ];
+    }
+  }
+
+  // Act 6: Büyük Final & Ebedi Gece
+  if (actIndex === 6) {
+    if (isStarterTurn) {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Bu gece yaşadığımız her saniye tenime ve ruhuma kazındı... Seni çok seviyorum ve hiç bırakmak istemiyorum.`
+            : `Bu gece hayatımın en unutulmaz gecesi oldu... Tenin tenimde, kokun içimde ebediyen kalacak.`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Ebedi Tutku',
+          hint: 'Sımsıkı sarılıp teninin sıcaklığıyla uykuya dalar',
+          effect: 'Büyük tutkulu final',
+          sceneBeat: '14 karşılıklı adımın sonunda hikaye unutulmaz bir tutku ve aşk anıtına dönüştü.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Sen benim bu hayattaki en büyük şansımsın... Yanında uyumak ve seninle uyanmak istiyorum.`
+            : `Seninle uyanacağım her sabah hayatımın en güzel günü olacak sevgilim... İyi ki varsın.`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Sonsuz Aşk Finali',
+          hint: 'Alnına ve dudağına son bir şefkatli öpücük bırakır',
+          effect: 'Romantik zafer',
+          sceneBeat: 'Aşkın ve şefkatin en yüksek zirvesinde final tamamlandı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bu oyunu ikimiz de kazandık desene... Ama bir dahaki sefere rövanş isterim!`
+            : `Rövanş teklifini seve seve kabul ediyorum; her gece seninle bu oyunu oynamaya varım!`,
+          vibe: 'funny',
+          tagLabel: '😂 Rövanş Sözü',
+          hint: 'Kahkaha ile sarılıp göz kırpar',
+          effect: 'Neşeli final',
+          sceneBeat: 'Kahkahalar ve aşkla dolu muhteşem bir gece başarıyla tamamlandı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bu gece burada başlayan şey sıradan bir kaçamak değil... Bu bizim sonsuz hikayemiz.`
+            : `Bu hikaye hiç bitmeyecek; biz birlikte her şeyin üstesinden geleceğiz kraliçem.`,
+          vibe: 'deep',
+          tagLabel: '👑 Büyük Destan',
+          hint: 'Elini sımsıkı tutup göğsüne koyar',
+          effect: 'Destansı birlik',
+          sceneBeat: 'Rol yapma oyunu destansı bir bağ ve aşkla mühürlendi.'
+        }
+      ];
+    } else {
+      return [
+        {
+          text: isFemaleTurn
+            ? `Teninin kokusuyla uykuya dalmak... Dünyanın en tatlı rüyası. İyi ki varsın birtanem.`
+            : `Senin kollarında uyumak hayatın en güzel hediyesi... Seni sonsuza kadar seveceğim.`,
+          vibe: 'hot',
+          tagLabel: '🔥 +18 Tatlı Son',
+          hint: 'Dudaklarından son bir kez öpüp sarılır',
+          effect: 'Huzurlu kucaklaşma',
+          sceneBeat: 'Tüm aşamalar kusursuz bir uyum ve tensel zirveyle taçlandırıldı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Seni her şeyden çok seviyorum... Kalbimin tek sahibi sensin.`
+            : `Ben de seni her şeyden çok seviyorum meleğim... Daima yanındayım.`,
+          vibe: 'sweet',
+          tagLabel: '🌸 Ebedi Sevgi',
+          hint: 'Gözlerinin içine sevgiyle bakar',
+          effect: 'Mükemmel romantik son',
+          sceneBeat: 'Sonsuz sevgiyle dolu unutulmaz bir gece tamamlandı.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Hadi şimdi bana sarıl ve uyu... Yarın sabahki kahvaltı iddiamızı unutma sakın!`
+            : `Asla unutmam güzelim; rüyanda bile beni görmen dileğiyle!`,
+          vibe: 'funny',
+          tagLabel: '😂 Tatlı Rüyalar',
+          hint: 'Gülümseyerek sarılır',
+          effect: 'Gülümseyen kapanış',
+          sceneBeat: 'Gülümsemelerle biten unutulmaz bir deneyim.'
+        },
+        {
+          text: isFemaleTurn
+            ? `Bu gece ikimiz için ebedi bir başlangıç oldu. Seni seviyorum.`
+            : `Ben de seni çok seviyorum sevgilim. Sonsuza kadar birlikteyiz.`,
+          vibe: 'deep',
+          tagLabel: '👑 Sonsuz Birlik',
+          hint: 'Sımsıkı sarılır',
+          effect: 'Görkemli final',
+          sceneBeat: 'Destansı macera büyük bir aşk zaferiyle noktalandı.'
+        }
+      ];
+    }
+  }
+
+  // Fallback
+  return [
+    { text: 'Seni çok arzuluyorum...', vibe: 'hot', tagLabel: '🔥 Tutku', hint: 'Sarılır', effect: 'Yakınlaşma', sceneBeat: 'Yakınlaşma devam ediyor.' },
+    { text: 'Seni çok seviyorum...', vibe: 'sweet', tagLabel: '🌸 Sevgi', hint: 'Gözlerine bakar', effect: 'Romantik an', sceneBeat: 'Romantizm derinleşiyor.' },
+    { text: 'Bu gece çok eğlenceliyiz!', vibe: 'funny', tagLabel: '😂 Zeka', hint: 'Güler', effect: 'Kahkaha', sceneBeat: 'Mizah havayı ısıtıyor.' },
+    { text: 'Kontrol tamamen sende.', vibe: 'deep', tagLabel: '👑 Güç', hint: 'Dik durur', effect: 'Hakimiyet', sceneBeat: 'Hakimiyet kuruluyor.' }
+  ];
+}
+
+let currentScenario = null;
+let currentStarter = 'female';
+let currentTurnIndex = 0;
+let userVibeScore = { hot: 0, sweet: 0, funny: 0, deep: 0 };
+let dialogueHistory = [];
+let lastChosenVibe = 'hot';
+let lastChosenText = '';
+let currentActiveRouteName = '🔥 Başlangıç Hamlesi';
+
+function setStarter(player) {
+  currentStarter = player;
+  document.getElementById('startFemaleBtn').classList.toggle('active', player === 'female');
+  document.getElementById('startMaleBtn').classList.toggle('active', player === 'male');
+  showToast(`⚡ İlk başlayacak: ${player === 'female' ? '👩 Kadın' : '🧑 Erkek'}`);
+}
+
+function filterScenarios(category, btnEl) {
+  currentCategoryFilter = category;
+  document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+  renderScenarioGrid();
+}
+
+function renderScenarioGrid() {
+  const grid = document.getElementById('scenarioGrid');
+  if (!grid) return;
+  
+  const filtered = (currentCategoryFilter === 'all')
+    ? SCENARIOS
+    : SCENARIOS.filter(s => s.category === currentCategoryFilter);
+
+  grid.innerHTML = filtered.map(s => {
+    const rolesText = s.roles ? `👩 ${s.roles.female} · 🧑 ${s.roles.male}` : 'Çift Rolleri';
+    return `
+      <div class="scenario-card" onclick="startScenario('${s.id}')">
+        <div>
+          <div class="card-top">
+            <div class="card-icon">${s.icon}</div>
+            <span class="card-badge ${s.badge}">${s.badgeText}</span>
+          </div>
+          <div class="card-title">${s.title}</div>
+          <div class="card-atmosphere">📍 ${s.atmosphere || 'Özel Mekan & Atmosfer'}</div>
+          <div class="card-roles-preview">🎭 ${rolesText}</div>
+          <div class="card-desc">${s.desc}</div>
+        </div>
+        <div class="card-footer">
+          <span style="font-size:0.75rem;color:var(--accent-pink);font-weight:700;">⚡ 14 Adımlı & 7 Aşamalı</span>
+          <span style="font-size:0.82rem;font-weight:800;color:var(--accent-gold);">Senaryoyu Başlat →</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function startRandomScenario() {
+  const rand = SCENARIOS[Math.floor(Math.random() * SCENARIOS.length)];
+  showToast(`🎲 Seçilen: ${rand.title}`);
+  startScenario(rand.id);
+}
+
+function startScenario(id) {
+  initAudio();
+  currentScenario = SCENARIOS.find(s => s.id === id) || SCENARIOS[0];
+  currentTurnIndex = 0;
+  userVibeScore = { hot: 0, sweet: 0, funny: 0, deep: 0 };
+  dialogueHistory = [];
+  lastChosenVibe = 'hot';
+  lastChosenText = '';
+  currentActiveRouteName = '🔥 Başlangıç Hamlesi';
+
+  document.getElementById('rpSetupView').style.display = 'none';
+  document.getElementById('rpFinaleView').style.display = 'none';
+  document.getElementById('rpGameView').style.display = 'flex';
+
+  document.getElementById('hudScenarioTitle').textContent = `${currentScenario.icon} ${currentScenario.title}`;
+  updateRouteBadge(currentActiveRouteName);
+  updateVibeUI();
+  renderStepTrack();
+
+  const femaleName = getFemaleName();
+  const maleName = getMaleName();
+  const fRole = currentScenario.roles ? currentScenario.roles.female : 'Kadın';
+  const mRole = currentScenario.roles ? currentScenario.roles.male : 'Erkek';
+
+  const feed = document.getElementById('storyFeed');
+  feed.innerHTML = `
+    <div class="scene-intro-box">
+      <span style="font-size:1.8rem;">${currentScenario.icon}</span>
+      <div>
+        <strong>🎭 Senaryo Başlangıcı & Roller:</strong><br/>
+        <span style="color:#ffd700;font-size:0.82rem;font-weight:700;">👩 ${femaleName} (${fRole}) · 🧑 ${maleName} (${mRole})</span><br/>
+        <span style="font-size:0.78rem;color:#a395c2;">📍 ${currentScenario.atmosphere || ''}</span><br/>
+        <p style="margin-top:6px;line-height:1.5;">${currentScenario.intro}</p>
+      </div>
+    </div>
+  `;
+
+  renderTurn();
+  playClickSound();
+}
+
+function updateRouteBadge(routeName) {
+  currentActiveRouteName = routeName || currentActiveRouteName;
+  const badge = document.getElementById('hudActiveRoute');
+  if (badge) {
+    badge.textContent = `📍 Rota: ${currentActiveRouteName}`;
+  }
+}
+
+function renderStepTrack() {
+  const track = document.getElementById('stepTrack');
+  let html = '';
+  for (let i = 0; i < 14; i++) {
+    const isFemale = (currentStarter === 'female') ? (i % 2 === 0) : (i % 2 === 1);
+    html += `
+      <div class="step-node ${isFemale ? 'female-node' : 'male-node'} ${i === 0 ? 'active' : ''}" id="stepNode${i}" title="Adım ${i+1}">
+        ${i + 1}
+      </div>
+    `;
+  }
+  track.innerHTML = html;
+}
+
+let activeTurnOptions = [];
+
+function renderTurn() {
+  if (currentTurnIndex >= 14) {
+    showFinale();
+    return;
+  }
+
+  const femaleName = getFemaleName();
+  const maleName = getMaleName();
+  const isFemaleTurn = (currentStarter === 'female') ? (currentTurnIndex % 2 === 0) : (currentTurnIndex % 2 === 1);
+  const activeName = isFemaleTurn ? femaleName : maleName;
+  const activeAvatar = isFemaleTurn ? '👩' : '🧑';
+  const activeRole = currentScenario.roles ? (isFemaleTurn ? currentScenario.roles.female : currentScenario.roles.male) : '';
+
+  const actIndex = Math.min(Math.floor(currentTurnIndex / 2), 6);
+  const isStarterTurn = (currentTurnIndex % 2 === 0);
+  const actTitle = ACT_TITLES[actIndex] || `Aşama ${actIndex + 1}`;
+
+  document.getElementById('hudScenarioStage').textContent = `${actTitle} (Adım ${currentTurnIndex + 1}/14)`;
+  document.getElementById('turnCalloutIcon').textContent = activeAvatar;
+  document.getElementById('turnCalloutName').textContent = `${activeAvatar} ${activeName} (${activeRole}) Sırası`;
+  
+  if (currentTurnIndex === 0) {
+    document.getElementById('turnCalloutHint').textContent = `İlk adımı sen atıyorsun. Tavrını seç veya tamamen kendi cümleni yaz:`;
+  } else {
+    document.getElementById('turnCalloutHint').textContent = `Partnerinin hamlesine uygun 4 farklı yoldan birini seç (+18 Tutku, Romantizm, Zeka, Dominant):`;
+  }
+  
+  document.getElementById('turnPill').textContent = `Adım ${currentTurnIndex + 1} / 14`;
+
+  // Update Undo Button state
+  const undoBtn = document.getElementById('undoBtn');
+  if (undoBtn) {
+    undoBtn.style.display = currentTurnIndex > 0 ? 'inline-block' : 'none';
+  }
+
+  for (let i = 0; i < 14; i++) {
+    const node = document.getElementById(`stepNode${i}`);
+    if (!node) continue;
+    node.classList.remove('active');
+    if (i < currentTurnIndex) node.classList.add('completed');
+    else if (i === currentTurnIndex) node.classList.add('active');
+    else node.classList.remove('completed');
+  }
+
+  // Get rich Act-aware branch options
+  const rawOptions = getActAwareDialoguePool(currentScenario, actIndex, isStarterTurn, lastChosenVibe, isFemaleTurn);
+  
+  activeTurnOptions = rawOptions.map(opt => {
+    let replacedText = opt.text
+      .replace(/\${femaleName}/g, femaleName)
+      .replace(/\${maleName}/g, maleName);
+    let replacedHint = (opt.hint || '')
+      .replace(/\${femaleName}/g, femaleName)
+      .replace(/\${maleName}/g, maleName);
+    let replacedEffect = (opt.effect || 'Mesafe kapanır, olaylar gelişir')
+      .replace(/\${femaleName}/g, femaleName)
+      .replace(/\${maleName}/g, maleName);
+    let replacedBeat = (opt.sceneBeat || '')
+      .replace(/\${femaleName}/g, femaleName)
+      .replace(/\${maleName}/g, maleName);
+
+    const tagClass = BRANCH_CONFIG[opt.vibe] ? BRANCH_CONFIG[opt.vibe].tag : 'tag-hot';
+    const tagLabel = opt.tagLabel || (BRANCH_CONFIG[opt.vibe] ? BRANCH_CONFIG[opt.vibe].tagLabel : '🔥 +18 Hamle');
+    const branchTitle = opt.branchTitle || (BRANCH_CONFIG[opt.vibe] ? BRANCH_CONFIG[opt.vibe].name : '🔥 Tutku Yolu');
+
+    return {
+      ...opt,
+      text: replacedText,
+      hint: replacedHint,
+      effect: replacedEffect,
+      sceneBeat: replacedBeat,
+      tagClass,
+      tagLabel,
+      branchTitle
+    };
+  });
+
+  const choiceGrid = document.getElementById('choiceGrid');
+  choiceGrid.innerHTML = activeTurnOptions.map((opt, idx) => `
+    <button class="choice-card" onclick="selectChoice(${idx})">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;">
+        <div class="choice-tag ${opt.tagClass}">
+          <span>${opt.tagLabel}</span>
+        </div>
+        <span style="font-size:0.65rem;color:var(--text-muted);font-weight:700;">Seçenek ${['A','B','C','D'][idx]}</span>
+      </div>
+      <div class="choice-text">"${opt.text}"</div>
+      <div class="choice-action-hint">✨ ${opt.hint}</div>
+      <div class="choice-event-preview">
+        <span>🎬 Olay: ${opt.effect}</span>
+      </div>
+    </button>
+  `).join('');
+
+  document.getElementById('customInput').value = '';
+}
+
+function selectChoice(idx) {
+  const chosen = activeTurnOptions[idx] || activeTurnOptions[0];
+  const isFemaleTurn = (currentStarter === 'female') ? (currentTurnIndex % 2 === 0) : (currentTurnIndex % 2 === 1);
+
+  lastChosenVibe = chosen.vibe || 'hot';
+  lastChosenText = chosen.text;
+  if (chosen.vibe) userVibeScore[chosen.vibe] = (userVibeScore[chosen.vibe] || 0) + 1;
+  if (chosen.branchTitle) updateRouteBadge(chosen.branchTitle);
+  
+  executeDialogue(chosen.text, chosen.hint, isFemaleTurn, chosen.vibe, chosen.effect, chosen.sceneBeat);
+}
+
+function submitCustomChoice() {
+  const input = document.getElementById('customInput');
+  const text = input.value.trim();
+  if (!text) {
+    showToast('⚠️ Lütfen bir cümle yazın veya şıklardan birini seçin!');
+    return;
+  }
+  const isFemaleTurn = (currentStarter === 'female') ? (currentTurnIndex % 2 === 0) : (currentTurnIndex % 2 === 1);
+
+  let detectedVibe = 'hot';
+  const lower = text.toLowerCase();
+  if (lower.includes('aşk') || lower.includes('sev') || lower.includes('canım') || lower.includes('kalp') || lower.includes('huzur')) {
+    detectedVibe = 'sweet';
+  } else if (lower.includes('komik') || lower.includes('haha') || lower.includes('bahis') || lower.includes('iddia') || lower.includes('pardon')) {
+    detectedVibe = 'funny';
+  } else if (lower.includes('emret') || lower.includes('patron') || lower.includes('yönet') || lower.includes('hükmet') || lower.includes('dinle')) {
+    detectedVibe = 'deep';
+  }
+
+  userVibeScore[detectedVibe]++;
+  lastChosenVibe = detectedVibe;
+  lastChosenText = text;
+
+  const customEffect = 'Özgün replik sahneyi tamamen dönüştürdü';
+  const customBeat = `🎬 [Özel Sahne Gelişimi]: ${isFemaleTurn ? getFemaleName() : getMaleName()} fısıldadığı bu özel cümleyle odayı büyüledi; aranızdaki çekim kendi kurallarıyla ilerliyor.`;
+
+  updateRouteBadge(`✨ Özgün Rota: ${BRANCH_CONFIG[detectedVibe].name}`);
+  executeDialogue(text, 'Kendi samimi ve tutkulu cümlesini fısıldadı', isFemaleTurn, detectedVibe, customEffect, customBeat);
+}
+
+function handleCustomKey(e) {
+  if (e.key === 'Enter') submitCustomChoice();
+}
+
+function executeDialogue(text, hint, isFemale, vibe, effect, sceneBeat) {
+  playClickSound();
+  const femaleName = getFemaleName();
+  const maleName = getMaleName();
+  const author = isFemale ? femaleName : maleName;
+  const role = currentScenario.roles ? (isFemale ? currentScenario.roles.female : currentScenario.roles.male) : (isFemale ? 'Kadın' : 'Erkek');
+  const avatar = isFemale ? '👩' : '🧑';
+  const rowClass = isFemale ? 'female-row' : 'male-row';
+
+  dialogueHistory.push({ author, role, text, hint, isFemale, vibe, turn: currentTurnIndex + 1, effect, sceneBeat });
+
+  const feed = document.getElementById('storyFeed');
+  
+  const row = document.createElement('div');
+  row.className = `dialogue-row ${rowClass}`;
+  row.id = `dialogueTurn${currentTurnIndex + 1}`;
+  
+  let vibeBadge = '🔥 +18 Tutkulu';
+  if (vibe === 'sweet') vibeBadge = '🌸 Romantik';
+  else if (vibe === 'funny') vibeBadge = '😂 Zeki & Çapkın';
+  else if (vibe === 'deep') vibeBadge = '👑 Dominant';
+
+  row.innerHTML = `
+    <div class="dialogue-avatar">${avatar}</div>
+    <div class="dialogue-bubble">
+      <div class="bubble-header">
+        <span class="bubble-author">${author} (${role})</span>
+        <span class="bubble-vibe-tag" style="background:rgba(255,255,255,0.08);color:#ffd700;">${vibeBadge}</span>
+      </div>
+      <div class="bubble-text">"${text}"</div>
+      ${hint ? `<div class="bubble-action-hint">✨ ${hint}</div>` : ''}
+      <div class="bubble-meta">
+        <span>Adım ${currentTurnIndex + 1}/14</span>
+        <button class="bubble-tts-btn" onclick="speakText('${text.replace(/'/g, "\\'")}')" title="Bu cümleyi sesli oku">🔊 Oku</button>
+      </div>
+    </div>
+  `;
+  feed.appendChild(row);
+
+  if (sceneBeat) {
+    const beatBox = document.createElement('div');
+    beatBox.className = 'event-beat-box';
+    beatBox.id = `beatTurn${currentTurnIndex + 1}`;
+    beatBox.innerHTML = `
+      <span class="beat-icon">🎬</span>
+      <div class="beat-content">
+        <strong>[Sahne Gelişimi]:</strong> <span>${sceneBeat}</span>
+      </div>
+    `;
+    feed.appendChild(beatBox);
+  }
+
+  feed.scrollTop = feed.scrollHeight;
+  updateVibeUI();
+
+  if (ttsEnabled) {
+    speakText(text);
+  }
+
+  currentTurnIndex++;
+
+  if (currentTurnIndex < 14) {
+    const nextIsFemale = (currentStarter === 'female') ? (currentTurnIndex % 2 === 0) : (currentTurnIndex % 2 === 1);
+    const nextName = nextIsFemale ? femaleName : maleName;
+    const typingBox = document.getElementById('typingIndicator');
+    document.getElementById('typingText').textContent = `${nextName} cevabını hazırlıyor...`;
+    typingBox.style.display = 'flex';
+    feed.appendChild(typingBox);
+    feed.scrollTop = feed.scrollHeight;
+
+    setTimeout(() => {
+      typingBox.style.display = 'none';
+      renderTurn();
+    }, 400);
+  } else {
+    setTimeout(showFinale, 600);
+  }
+}
+
+function undoLastTurn() {
+  if (currentTurnIndex <= 0 || dialogueHistory.length === 0) return;
+
+  const lastEntry = dialogueHistory.pop();
+  if (lastEntry && lastEntry.vibe && userVibeScore[lastEntry.vibe] > 0) {
+    userVibeScore[lastEntry.vibe]--;
+  }
+
+  const rowEl = document.getElementById(`dialogueTurn${currentTurnIndex}`);
+  if (rowEl) rowEl.remove();
+
+  const beatEl = document.getElementById(`beatTurn${currentTurnIndex}`);
+  if (beatEl) beatEl.remove();
+
+  currentTurnIndex--;
+  showToast(`↩️ Adım ${currentTurnIndex + 1} geri alındı`);
+  renderTurn();
+  updateVibeUI();
+}
+
+function updateVibeUI() {
+  const total = Math.max(1, currentTurnIndex);
+  const hotRate = Math.round((userVibeScore.hot / total) * 100) || 45;
+  const sweetRate = Math.round((userVibeScore.sweet / total) * 100) || 35;
+  const funnyRate = Math.round(((userVibeScore.funny + userVibeScore.deep) / total) * 100) || 20;
+
+  document.getElementById('vibeStatHot').textContent = `%${hotRate} Tutku`;
+  document.getElementById('vibeStatRomantic').textContent = `%${sweetRate} Romantizm`;
+  document.getElementById('vibeStatFunny').textContent = `%${funnyRate} Zeka`;
+}
+
+function showFinale() {
+  playClimaxSound();
+  launchConfetti();
+  document.getElementById('rpGameView').style.display = 'none';
+  document.getElementById('rpFinaleView').style.display = 'block';
+
+  let finaleType = 'Ateşli & Tutkulu Aşıklar 🔥';
+  let finaleDesc = 'Tüm 14 karşılıklı adım inanılmaz bir tensel ve duygusal uyumla tamamlandı. Birbirinize verdiğiniz cevaplar doğrultusunda hikaye unutulmaz bir tutku zirvesine ulaştı!';
+  let finaleIcon = '🔥💋';
+
+  if (userVibeScore.sweet >= userVibeScore.hot && userVibeScore.sweet >= userVibeScore.funny) {
+    finaleType = 'Büyüleyici Romantik Çift 💖';
+    finaleDesc = 'Seçimleriniz hikayeye derin bir duygusal sıcaklık ve kalıcı bir aşk bağı kazandırdı.';
+    finaleIcon = '💖✨';
+  } else if (userVibeScore.funny >= userVibeScore.hot) {
+    finaleType = 'Zeki & Çapkın İkili 😂';
+    finaleDesc = 'Birbirinize takılarak, zekice flörtleşerek harika bir mizah ve çekim dolu gece yarattınız!';
+    finaleIcon = '🎉😂';
+  }
+
+  let highlightQuote = 'Bu gece ruhumu da tenimi de sana teslim ettim...';
+  if (dialogueHistory.length > 0) {
+    const hotDialogues = dialogueHistory.filter(d => d.vibe === 'hot' || d.vibe === 'deep');
+    if (hotDialogues.length > 0) {
+      const best = hotDialogues[hotDialogues.length - 1];
+      highlightQuote = `"${best.text}" — ${best.author}`;
+    } else {
+      highlightQuote = `"${dialogueHistory[dialogueHistory.length - 1].text}" — ${dialogueHistory[dialogueHistory.length - 1].author}`;
+    }
+  }
+
+  document.getElementById('finaleIcon').textContent = finaleIcon;
+  document.getElementById('finaleTitle').textContent = `Gece Sonu: ${finaleType}`;
+  document.getElementById('finaleSummary').textContent = finaleDesc;
+  document.getElementById('finalVibeScore').textContent = finaleType;
+  document.getElementById('highlightQuoteBox').textContent = `✨ Gecenin Unutulmaz Cümlesi: ${highlightQuote}`;
+  document.getElementById('finalChemistryRate').textContent = `%${88 + Math.floor(Math.random() * 12)}`;
+}
+
+function restartSameScenario() {
+  if (currentScenario) startScenario(currentScenario.id);
+}
+
+function exitToRpSetup() {
+  document.getElementById('rpGameView').style.display = 'none';
+  document.getElementById('rpFinaleView').style.display = 'none';
+  document.getElementById('rpSetupView').style.display = 'block';
+  renderScenarioGrid();
+  checkSavedGameButton();
+}
+
+function copyTranscript() {
+  if (dialogueHistory.length === 0) return;
+  const femaleName = getFemaleName();
+  const maleName = getMaleName();
+  let t = `✨ "${currentScenario.title}" - Çift Rol Yapma Hikayesi ✨\n`;
+  t += `Oyuncular: 👩 ${femaleName} & 🧑 ${maleName}\n`;
+  t += `Atmosfer: ${currentScenario.atmosphere || ''}\n\n`;
+  t += `--------------------------------------------------\n`;
+  dialogueHistory.forEach(d => {
+    t += `[Adım ${d.turn}] ${d.author} (${d.role}): "${d.text}"\n`;
+    if (d.hint) t += `   ↳ (Aksiyon: ${d.hint})\n`;
+    if (d.sceneBeat) t += `   🎬 [Olay]: ${d.sceneBeat}\n`;
+  });
+  t += `--------------------------------------------------\n`;
+  navigator.clipboard.writeText(t).then(() => showToast('📋 Tüm diyalog panoya kopyalandı!'));
+}
+
+function downloadTranscriptFile() {
+  if (dialogueHistory.length === 0) return;
+  const femaleName = getFemaleName();
+  const maleName = getMaleName();
+  let t = `✨ "${currentScenario.title}" - Çift Rol Yapma Hikayesi ✨\n`;
+  t += `Tarih: ${new Date().toLocaleDateString('tr-TR')} ${new Date().toLocaleTimeString('tr-TR')}\n`;
+  t += `Oyuncular: 👩 ${femaleName} & 🧑 ${maleName}\n`;
+  t += `Atmosfer: ${currentScenario.atmosphere || ''}\n\n`;
+  t += `==================================================\n`;
+  dialogueHistory.forEach(d => {
+    t += `[Adım ${d.turn}] ${d.author} (${d.role}):\n"${d.text}"\n`;
+    if (d.hint) t += `(Aksiyon & Beden Dili: ${d.hint})\n`;
+    if (d.sceneBeat) t += `🎬 [Olay]: ${d.sceneBeat}\n`;
+    t += `\n`;
+  });
+  t += `==================================================\n`;
+  t += `Sonuç: ${document.getElementById('finaleTitle').textContent}\n`;
+
+  const blob = new Blob([t], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Cift_Rol_Oyunu_${currentScenario.id}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('💾 Hikaye metin dosyası olarak indirildi!');
+}
+
+function saveCurrentGame() {
+  if (!currentScenario) {
+    showToast('⚠️ Henüz aktif bir oyun yok!');
+    return;
+  }
+  const saveData = {
+    scenarioId: currentScenario.id,
+    starter: currentStarter,
+    femaleName: getFemaleName(),
+    maleName: getMaleName(),
+    turnIndex: currentTurnIndex,
+    userVibeScore,
+    dialogueHistory,
+    lastChosenVibe,
+    activeRouteName: currentActiveRouteName,
+    timestamp: new Date().toISOString()
+  };
+  try {
+    localStorage.setItem('cift_rol_saved_game', JSON.stringify(saveData));
+    showToast('💾 Oyun durumu başarıyla kaydedildi!');
+    checkSavedGameButton();
+  } catch(e) {
+    showToast('⚠️ Kayıt hatası!');
+  }
+}
+
+function loadSavedGame() {
+  try {
+    const raw = localStorage.getItem('cift_rol_saved_game');
+    if (!raw) {
+      showToast('⚠️ Kayıtlı oyun bulunamadı!');
+      return;
+    }
+    const data = JSON.parse(raw);
+    currentScenario = SCENARIOS.find(s => s.id === data.scenarioId) || SCENARIOS[0];
+    currentStarter = data.starter || 'female';
+    document.getElementById('femaleName').value = data.femaleName || 'Buket';
+    document.getElementById('maleName').value = data.maleName || 'Sabri';
+    setStarter(currentStarter);
+
+    currentTurnIndex = data.turnIndex || 0;
+    userVibeScore = data.userVibeScore || { hot: 0, sweet: 0, funny: 0, deep: 0 };
+    dialogueHistory = data.dialogueHistory || [];
+    lastChosenVibe = data.lastChosenVibe || 'hot';
+    currentActiveRouteName = data.activeRouteName || '🔥 Başlangıç Hamlesi';
+
+    document.getElementById('rpSetupView').style.display = 'none';
+    document.getElementById('rpFinaleView').style.display = 'none';
+    document.getElementById('rpGameView').style.display = 'flex';
+
+    document.getElementById('hudScenarioTitle').textContent = `${currentScenario.icon} ${currentScenario.title}`;
+    updateRouteBadge(currentActiveRouteName);
+    updateVibeUI();
+    renderStepTrack();
+
+    const feed = document.getElementById('storyFeed');
+    feed.innerHTML = `
+      <div class="scene-intro-box">
+        <span style="font-size:1.8rem;">${currentScenario.icon}</span>
+        <div>
+          <strong>🎭 Senaryo Başlangıcı & Roller:</strong><br/>
+          <span style="color:#ffd700;font-size:0.82rem;font-weight:700;">👩 ${data.femaleName} (${currentScenario.roles.female}) · 🧑 ${data.maleName} (${currentScenario.roles.male})</span><br/>
+          <span style="font-size:0.78rem;color:#a395c2;">📍 ${currentScenario.atmosphere || ''}</span><br/>
+          <p style="margin-top:6px;line-height:1.5;">${currentScenario.intro}</p>
+        </div>
+      </div>
+    `;
+
+    dialogueHistory.forEach((d, idx) => {
+      const avatar = d.isFemale ? '👩' : '🧑';
+      const rowClass = d.isFemale ? 'female-row' : 'male-row';
+      let vibeBadge = '🔥 +18 Tutkulu';
+      if (d.vibe === 'sweet') vibeBadge = '🌸 Romantik';
+      else if (d.vibe === 'funny') vibeBadge = '😂 Zeki & Çapkın';
+      else if (d.vibe === 'deep') vibeBadge = '👑 Dominant';
+
+      const row = document.createElement('div');
+      row.className = `dialogue-row ${rowClass}`;
+      row.id = `dialogueTurn${idx + 1}`;
+      row.innerHTML = `
+        <div class="dialogue-avatar">${avatar}</div>
+        <div class="dialogue-bubble">
+          <div class="bubble-header">
+            <span class="bubble-author">${d.author} (${d.role})</span>
+            <span class="bubble-vibe-tag" style="background:rgba(255,255,255,0.08);color:#ffd700;">${vibeBadge}</span>
+          </div>
+          <div class="bubble-text">"${d.text}"</div>
+          ${d.hint ? `<div class="bubble-action-hint">✨ ${d.hint}</div>` : ''}
+          <div class="bubble-meta">
+            <span>Adım ${idx + 1}/14</span>
+            <button class="bubble-tts-btn" onclick="speakText('${d.text.replace(/'/g, "\\'")}')" title="Bu cümleyi sesli oku">🔊 Oku</button>
+          </div>
+        </div>
+      `;
+      feed.appendChild(row);
+
+      if (d.sceneBeat) {
+        const beatBox = document.createElement('div');
+        beatBox.className = 'event-beat-box';
+        beatBox.id = `beatTurn${idx + 1}`;
+        beatBox.innerHTML = `
+          <span class="beat-icon">🎬</span>
+          <div class="beat-content">
+            <strong>[Sahne Gelişimi]:</strong> <span>${d.sceneBeat}</span>
+          </div>
+        `;
+        feed.appendChild(beatBox);
+      }
+    });
+
+    feed.scrollTop = feed.scrollHeight;
+    renderTurn();
+    showToast('📂 Kayıtlı oyun başarıyla yüklendi!');
+  } catch(e) {
+    showToast('⚠️ Kayıt yüklenirken hata oluştu!');
+  }
+}
+
+function checkSavedGameButton() {
+  const btn = document.getElementById('loadGameBtn');
+  if (btn) {
+    const raw = localStorage.getItem('cift_rol_saved_game');
+    btn.style.display = raw ? 'inline-flex' : 'none';
+  }
+}
+
+function getFemaleName() {
+  const el = document.getElementById('femaleName');
+  return (el && el.value.trim()) ? el.value.trim() : 'Buket';
+}
+
+function getMaleName() {
+  const el = document.getElementById('maleName');
+  return (el && el.value.trim()) ? el.value.trim() : 'Sabri';
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2600);
+}
+
+function createFloatingParticles() {
+  const container = document.getElementById('particleContainer');
+  const symbols = ['✨', '💖', '🌸', '⭐', '☕', '🍷', '🎀', '🔥', '💋', '🥂'];
+  for (let i = 0; i < 24; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (8 + Math.random() * 12) + 's';
+    p.style.animationDelay = (Math.random() * 8) + 's';
+    p.style.fontSize = (0.8 + Math.random() * 1.1) + 'rem';
+    container.appendChild(p);
+  }
+}
+
+function launchConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const pieces = [];
+  const colors = ['#ff3b7e', '#9b51e0', '#ffbe3b', '#00c2ff', '#00e676', '#fff'];
+  for (let i = 0; i < 90; i++) {
+    pieces.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      speed: Math.random() * 5 + 2,
+      angle: Math.random() * 360,
+      spin: Math.random() * 6 - 3
+    });
+  }
+
+  function update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let active = false;
+    pieces.forEach(p => {
+      p.y += p.speed;
+      p.angle += p.spin;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate((p.angle * Math.PI) / 180);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      ctx.restore();
+      if (p.y < canvas.height) active = true;
+    });
+    if (active) requestAnimationFrame(update);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  update();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  createFloatingParticles();
+  renderScenarioGrid();
+  checkSavedGameButton();
+});
+</script>
+</body>
+</html>
